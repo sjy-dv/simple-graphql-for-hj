@@ -1,0 +1,28 @@
+{
+    "name": "grapth",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon --exec app.js -V -e js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-graphql": "^0.12.0",
+        "faker": "^5.5.3",
+        "graphql": "^15.5.1",
+        "mysql2": "^2.2.5",
+        "nodejs-base64": "^2.0.0",
+        "nodemon": "^2.0.7",
+        "sequelize": "^6.6.5"
+    },
+    "fractal": {
+        "main": "fractal.config.js"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.14.6",
+        "@babel/node": "^7.14.7",
+        "@babel/preset-env": "^7.14.7"
+    }
+}
