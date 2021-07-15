@@ -89,6 +89,28 @@ const queryType = new GraphQLObjectType({
     },
 });
 
+/**
+ * =====graphql query=======
+ *  finduser 쓸 때,
+ * {   
+    finduser(idx : 1){    
+        user_id,
+        username,
+        password
+    }
+}
+ * =====graphql query=======
+ *  findAll 쓸 때,
+ * {   
+    findAll(){    
+        user_id,
+        username,
+        password
+    }
+}
+ * 
+ */
+
 const schema = new GraphQLSchema({ query: queryType });
 
 app.use(
