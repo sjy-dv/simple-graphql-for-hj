@@ -95,6 +95,9 @@ const schemaInDB = buildSchema(
         finduser(idx:Int!) : [User]
         findAll : [User]
     },
+    type Mutation {
+        createUser(user_id : String!, username:String!, password:String!) : String
+    }
     `
 );
 
@@ -137,6 +140,19 @@ const rootInDB = {
             console.log(error);
         }
     },
+    createUser: async ({ user_id, username, password }) => {
+        try {
+            const rows = db.User.create({
+                user_id: user_id,
+                username: username,
+                password: password,
+            });
+            if (rows) return "success";
+            else return "failed";
+        } catch (error) {
+            console.log(error);
+        }
+    },
 };
 
 // use graphql gui
@@ -161,6 +177,7 @@ query getuserInfo($userIdx:Int!) {
 }
  ==== Variables ==== 
  {
+ 
     "userIdx" : 원하는 회원번호
 }
 
@@ -173,6 +190,21 @@ query getuserInfo($userIdx:Int!) {
         password
     }
 }
+
+>>>> createUser 쓰려면
+======graphql query=======
+mutation createUser($user_id:String!, $username:String!, $password:String!)
+{
+    createUser(user_id: $user_id, username: $username, password:$password) 
+}
+ ==== Variables ==== 
+{
+    "user_id" : "dsds",
+    "username" : "김현지",
+    "password" : "13131"
+}
+
+
 */
 require("http")
     .createServer(app)

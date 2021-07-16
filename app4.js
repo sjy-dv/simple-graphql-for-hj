@@ -40,6 +40,7 @@ const typeDefs = `
     type Query {
        finduser(idx : Int!): User
        findAll:[User]
+        createUser(user_id : String!, username:String!, password:String!) : String
     }
 `;
 
@@ -78,6 +79,19 @@ const resolvers = {
                     result.push(simple_json);
                 }
                 return result;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async createUser(_, { user_id, username, password }) {
+            try {
+                const rows = await db.User.create({
+                    user_id: user_id,
+                    username: username,
+                    password: password,
+                });
+                if (rows) return "success";
+                else return "failed";
             } catch (error) {
                 console.log(error);
             }

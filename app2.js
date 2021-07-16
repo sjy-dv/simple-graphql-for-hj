@@ -87,6 +87,30 @@ const queryType = new GraphQLObjectType({
             },
         },
     },
+    name: "Mutation",
+    fields: {
+        createUser: {
+            type: GraphQLString,
+            args: {
+                user_id: { type: GraphQLString },
+                username: { type: GraphQLString },
+                password: { type: GraphQLString },
+            },
+            resolve: async (_, { user_id, username, password }) => {
+                try {
+                    const rows = await db.User.create({
+                        user_id: user_id,
+                        username: username,
+                        password: password,
+                    });
+                    if (rows) return "success";
+                    else return "failed";
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+        },
+    },
 });
 
 /**
@@ -107,6 +131,16 @@ const queryType = new GraphQLObjectType({
         username,
         password
     }
+}
+
+ * =====graphql query=======
+ *  createUser 쓸 때,
+{
+    createUser(
+        user_id: "dsddsdss", 
+        username: "김현지2", 
+        password:"13131"
+        ) 
 }
  * 
  */
