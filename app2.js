@@ -102,7 +102,7 @@ const queryType = new GraphQLObjectType({
  * =====graphql query=======
  *  findAll 쓸 때,
  * {   
-    findAll(){    
+    findAll{    
         user_id,
         username,
         password
